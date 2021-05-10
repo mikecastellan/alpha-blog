@@ -1,6 +1,11 @@
 <h1>Articles</h1>
 
-<%= render 'articles', obj: @articles %>
-
+<div class="flickr_pagination">
+    <%= will_paginate @articles, :container => false %>
+</div>
+		<%= render 'articles', obj: @articles %>
+<div class="flickr_pagination">
+    <%= will_paginate @articles, :container => false %>
+</div>
 </br>
 <%= link_to 'Create New Article', new_article_path %>

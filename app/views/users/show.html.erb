@@ -1,14 +1,25 @@
 
-<%= gravatar_for @user %>
-
-<h1>User: <%= @user.id %> </h1>
-<p><strong>Username: </strong><%= @user.username %></p>
-<p><strong>Email: </strong><%= @user.email %></p>
-
+<div class="container">
+	<div class="d-flex justify-content-center">
+		<div class="card" style="width: 18rem;">
+			<%= link_to gravatar_for(@user)%>
+			<div class="card-body">
+				<h5 class="card-title">	<p><%=@user.username%></p></h5>
+				<p class="card-text">	
+					<p><%= @user.email %></p>
+					<p><%= pluralize(@user.articles.count, "articles") %></p>
+				</p>
+				<%= link_to 'Edit', edit_user_path(@user) %>
+				<%= link_to 'Delete', user_path(@user), method: :delete, data: {confirm: "Are you sure!?" } %>
+			</div>
+			  <div class="card-footer text-muted">
+    			Joined <%= time_ago_in_words(@user.created_at) %> ago
+  		</div>
+		</div>
+	</div>
+</div>
 
 <h2>Users Articles</h2>
 <%= render 'articles/articles' , obj: @user.articles %>
 
 </br>
-<%= link_to 'Edit', edit_user_path(@user) %>
-<%= link_to 'Delete', user_path(@user), method: :delete, data: {confirm: 'Are you sure?' } %>
